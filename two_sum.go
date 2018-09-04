@@ -1,7 +1,10 @@
 package leetcode
 
+// 1. 两数之和
 // 给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。
 // 你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。
+
+// 难度：简单
 
 // 示例：给定 nums = [2, 7, 11, 15], target = 9
 // 因为 nums[0] + nums[1] = 2 + 7 = 9
@@ -30,11 +33,10 @@ func TwoSum2(nums []int, target int) []int {
 	length := len(nums)
 	j := 0
 	for i := j + 1; i < length; {
-		if target == nums[j] + nums[i] {
+		if target == nums[j]+nums[i] {
 			return []int{j, i}
 		}
-		i++
-		if i >= length {
+		if i++; i >= length {
 			j++
 			i = j + 1
 		}
@@ -43,16 +45,15 @@ func TwoSum2(nums []int, target int) []int {
 }
 
 // 3.一遍map表
+// 时间复杂度：O(n)
 // 把遍历过的元素存进map的key中，然后再判断map中是否存在
 // 执行用时：8 ms
 func TwoSum3(nums []int, target int) []int {
-	length := len(nums)
 	m := make(map[int]int)
-	for i := 0; i < length; i++ {
-		key := target - nums[i]
-		_, ok := m[key]
-		if ok {
-			return []int{m[key], i}
+	for i, num := range nums {
+		key := target - num
+		if j, ok := m[key]; ok {
+			return []int{j, i}
 		}
 		m[nums[i]] = i
 	}
